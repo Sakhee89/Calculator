@@ -5,8 +5,22 @@ import styles from "./page.module.css";
 import React, { useState } from "react";
 import NumberButton from "./components/NumberButton";
 
+const operators = ["+", "-", "/", "*"];
+
 const Page = () => {
   const [result, setResult] = useState("");
+
+  const operatorButtonHandler = (symbolString: string) => {
+    const lastIndexNumber = result.length - 1;
+    const lastCharacter = result.charAt(lastIndexNumber);
+
+    if (operators.includes(lastCharacter)) {
+      setResult(result.slice(0, -1) + symbolString);
+      return;
+    }
+
+    setResult(result.concat(symbolString));
+  };
 
   const numberButtonHandler = (numString: string) => {
     setResult(result.concat(numString));
@@ -51,7 +65,7 @@ const Page = () => {
         </button>
         <button
           onClick={() => {
-            numberButtonHandler("/");
+            operatorButtonHandler("/");
           }}
         >
           &divide;
@@ -70,7 +84,7 @@ const Page = () => {
         />
         <button
           onClick={() => {
-            numberButtonHandler("*");
+            operatorButtonHandler("*");
           }}
         >
           &times;
@@ -89,7 +103,7 @@ const Page = () => {
         />
         <button
           onClick={() => {
-            numberButtonHandler("-");
+            operatorButtonHandler("-");
           }}
         >
           &ndash;
@@ -108,7 +122,7 @@ const Page = () => {
         />
         <button
           onClick={() => {
-            numberButtonHandler("+");
+            operatorButtonHandler("+");
           }}
         >
           +
