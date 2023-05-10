@@ -5,7 +5,7 @@ import styles from "./page.module.css";
 import React, { useState } from "react";
 import NumberButton from "./components/NumberButton";
 
-const page = () => {
+const Page = () => {
   const [result, setResult] = useState("");
 
   const numberButtonHandler = (numString: string) => {
@@ -136,4 +136,4 @@ const page = () => {
     </div>
   );
 };
-export default page;
+export default Page;
